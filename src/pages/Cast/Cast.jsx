@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { getMovieCredits } from 'servises/getMovieCredits';
 import { Section, CastList,CastItem,Paragraph } from './Cast.styled';
 
-const notFoundImg="https://dropmefiles.top/ua/i/2b43d625fc0a0eb276c83f6530bc7f63/e2e011cb8ece845c63e9313e0b292f85"
+const notFoundImg="https://fs41.fex.net/preview/4225902883/0x0"
 
 
 export const Cast = () => {

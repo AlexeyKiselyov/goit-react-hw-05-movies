@@ -20,7 +20,7 @@ export const FilmsItem = styled.li`
 
   :hover,
   :focus {
-    color: blue;
+    color: #2196f3;
   }
 `;
 

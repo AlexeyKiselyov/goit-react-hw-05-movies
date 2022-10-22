@@ -1,17 +1,20 @@
 import { Loader } from 'components/Loader/Loader';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetailsById } from '../../servises/getMovieDetailsById';
 import {
   Section,
   WrapperDetails,
   AboutFilm,
-  ButtonBack,
+  LinkBack,
   Title,
   SecondaryTitle,
   Paragraph,
-  Genres,AdditionalTitle,AdditionalList,AdditionalItem
+  Genres,
+  AdditionalTitle,
+  AdditionalList,
+  AdditionalItem,
 } from './MovieDetails.styled';
 
 export const MovieDetails = () => {
@@ -20,6 +23,7 @@ export const MovieDetails = () => {
   const [error, setError] = useState(null);
 
   const { movieId } = useParams();
+  const location = useLocation();
 
   useEffect(() => {
     setIsLoading(true);
@@ -38,14 +42,17 @@ export const MovieDetails = () => {
   //   setIsLoading(true);
   // };
 
-  // console.log(movieDetails);
   const { poster_path, title, overview, genres } = movieDetails;
 
   return (
     <>
       <Section>
-        <ButtonBack type="button">Go back</ButtonBack>
-        {/* ==============Film detail============= */}
+        {location.state ? (
+          <LinkBack to={location.state.from}>Go back</LinkBack>
+        ) : (
+          <LinkBack to="/">Go back</LinkBack>
+        )}
+
         <WrapperDetails>
           {isLoading && <Loader />}
           {error && <p>Oops, some error:{error}</p>}
@@ -84,14 +91,6 @@ export const MovieDetails = () => {
         </AdditionalList>
       </Section>
       <Outlet />
-
-      {/* <ul>
-        {movieDetails&&movieDetails.map(movie=>
-        <li key={movie.id}>
-          <Link to={`movies/${movie.id}`}>{movie.title}</Link>
-        </li>)        
-      }
-    </ul> */}
     </>
   );
 };

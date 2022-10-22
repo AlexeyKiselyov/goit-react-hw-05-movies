@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Section = styled.section`
@@ -15,10 +16,18 @@ export const AboutFilm = styled.div`
   padding: 20px 10px;
 `;
 
-export const ButtonBack = styled.button`
+export const LinkBack = styled(Link)`
+display: inline-block;
   padding: 4px 8px;
   margin-left: 10px;
+
+  border:2px solid;
   border-radius: 6px;
+
+  :hover,
+  :focus {
+    border-color: #2196f3;
+  }
 `;
 
 export const Title = styled.h2`
@@ -59,6 +68,6 @@ export const AdditionalItem = styled.li`
 
   :hover,
   :focus {
-    color: blue;
+    color: #2196f3;
   }
 `;

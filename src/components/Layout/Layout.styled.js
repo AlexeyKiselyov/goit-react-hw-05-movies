@@ -15,7 +15,7 @@ export const LinkStyled = styled(NavLink)`
 
   :hover:not(:active),
   :focus-visible:not(:active) {
-    color: blue;
+    color: #2196f3;
   }
 
   :not(:last-child){
