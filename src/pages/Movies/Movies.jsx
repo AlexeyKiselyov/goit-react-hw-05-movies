@@ -64,7 +64,7 @@ export const Movies = () => {
 
       {movies.length > 0 && (
         <Section>
-          <Title>Trending today</Title>
+          <Title>Search results</Title>
           <MovieSearchList>
             {movies.map(movie => (
               <MovieSearchItem key={movie.id}>
