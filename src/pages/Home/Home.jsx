@@ -4,7 +4,7 @@ import { getTrandingApi } from 'servises/getTrandingApi';
 import { Section, Title, FilmsList } from './Home.styled';
 import { TrendingItem } from 'components/TrendingItem/TrendingItem';
 
-export const Home = () => {
+ const Home = () => {
   const [trending, setTrending] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -36,3 +36,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

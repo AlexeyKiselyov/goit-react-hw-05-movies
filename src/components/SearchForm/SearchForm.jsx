@@ -12,7 +12,7 @@ export const SearchForm = ({ setSearchParams }) => {
 
   const onFormSubmit = e => {
     e.preventDefault();
-    setSearchParams({ query: movieInput.trim() });
+    setSearchParams(movieInput!==""?{ query: movieInput.trim() }:{});
     setMovieInput('');
   };
 

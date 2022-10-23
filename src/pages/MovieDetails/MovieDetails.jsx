@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 
 import { Loader } from 'components/Loader/Loader';
@@ -9,7 +9,7 @@ import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
 import { Section, WrapperDetails, LinkBack } from './MovieDetails.styled';
 // ======================MovieDetails===================
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -30,7 +30,7 @@ export const MovieDetails = () => {
   }, [movieId]);
 
   const { poster_path, title, overview, genres } = movieDetails;
-  const backLinkHref= location.state?.from ?? "/";
+  const backLinkHref = location.state?.from ?? '/';
 
   return (
     <>
@@ -61,7 +61,11 @@ export const MovieDetails = () => {
         <AdditionalInfo />
       </Section>
       {/* ======================Outlet====================== */}
-      <Outlet />
+      <Suspense fallback={null}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };
+
+export default MovieDetails;

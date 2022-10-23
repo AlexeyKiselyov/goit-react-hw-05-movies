@@ -8,7 +8,7 @@ import { ReviewslList } from 'components/ReviewslList/ReviewslList';
 import { Section } from './Reviews.styled';
 
 // ======================Reviews========================
-export const Reviews = () => {
+ const Reviews = () => {
   const [reviews, setMovieReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -38,3 +38,5 @@ export const Reviews = () => {
     </>
   );
 };
+
+export default Reviews;

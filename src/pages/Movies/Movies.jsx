@@ -9,17 +9,17 @@ import { getMovieSearch } from 'servises/getMovieSearch';
 import { Section } from './Movie.styled';
 // ==================Movies==========================
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const params = searchParams.get('query');
+  const params = searchParams.get('query') ?? '';
 
   useEffect(() => {
     if (!params) return;
-    setError(null)
+    setError(null);
     setIsLoading(true);
     getMovieSearch(params)
       .then(response => setMovies(response))
@@ -47,3 +47,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

@@ -8,7 +8,7 @@ import { getMovieCredits } from 'servises/getMovieCredits';
 import { Section } from './Cast.styled';
 
 // =========================Cast======================
-export const Cast = () => {
+const Cast = () => {
   const [credits, setCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -32,8 +32,10 @@ export const Cast = () => {
       {isLoading && <Loader />}
       {error && <p>Oops, some error:{error}</p>}
       <Section>
-        <CastGallery credits={credits}/>        
+        <CastGallery credits={credits} />
       </Section>
     </>
   );
 };
+
+export default Cast;
