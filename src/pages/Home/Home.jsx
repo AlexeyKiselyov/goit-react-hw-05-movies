@@ -1,9 +1,8 @@
+import { useEffect, useState } from 'react';
 import { Loader } from 'components/Loader/Loader';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { getTrandingApi } from 'servises/getTrandingApi';
-import { Section,Title,FilmsList,FilmsItem } from './Home.styled';
+import { Section, Title, FilmsList } from './Home.styled';
+import { TrendingItem } from 'components/TrendingItem/TrendingItem';
 
 export const Home = () => {
   const [trending, setTrending] = useState([]);
@@ -24,19 +23,16 @@ export const Home = () => {
 
   return (
     <>
-      {isLoading && <Loader />}
       {error && <p>Oops, some error:{error}</p>}
+
       <Section>
         <Title>Trending today</Title>
         <FilmsList>
-          {trending &&
-            trending.map(movie => (
-              <FilmsItem key={movie.id}>
-                <Link to={`movies/${movie.id}`}>{movie.title}</Link>
-              </FilmsItem>
-            ))}
+          {trending && <TrendingItem trending={trending} />}
         </FilmsList>
       </Section>
+
+      {isLoading && <Loader />}
     </>
   );
 };

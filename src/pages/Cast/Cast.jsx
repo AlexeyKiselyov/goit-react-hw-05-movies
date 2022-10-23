@@ -1,12 +1,13 @@
-import { Loader } from 'components/Loader/Loader';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+
+import { CastGallery } from 'components/CastGallery/CastGallery';
+import { Loader } from 'components/Loader/Loader';
 import { getMovieCredits } from 'servises/getMovieCredits';
-import { Section, CastList,CastItem,Paragraph } from './Cast.styled';
 
-const notFoundImg="https://fs41.fex.net/preview/4225902883/0x0"
+import { Section } from './Cast.styled';
 
-
+// =========================Cast======================
 export const Cast = () => {
   const [credits, setCredits] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -31,20 +32,7 @@ export const Cast = () => {
       {isLoading && <Loader />}
       {error && <p>Oops, some error:{error}</p>}
       <Section>
-        <CastList>
-          {credits &&
-            credits.map(({ id, profile_path, name, character }) => {
-              return(
-              <CastItem key={id}>
-                <img
-                  src={ profile_path===null?notFoundImg:`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                  alt={name}                  
-                />
-                <Paragraph>{name}</Paragraph>
-                <Paragraph>Character: {character}</Paragraph>
-              </CastItem>
-            )})}
-        </CastList>
+        <CastGallery credits={credits}/>        
       </Section>
     </>
   );

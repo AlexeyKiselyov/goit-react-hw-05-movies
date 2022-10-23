@@ -1,21 +1,13 @@
+import { useEffect, useState } from 'react';
+import { Outlet, useLocation, useParams } from 'react-router-dom';
+
 import { Loader } from 'components/Loader/Loader';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetailsById } from '../../servises/getMovieDetailsById';
-import {
-  Section,
-  WrapperDetails,
-  AboutFilm,
-  LinkBack,
-  Title,
-  SecondaryTitle,
-  Paragraph,
-  Genres,
-  AdditionalTitle,
-  AdditionalList,
-  AdditionalItem,
-} from './MovieDetails.styled';
+import { AboutFilm } from 'components/AboutFilm/AboutFilm';
+import { AdditionalInfo } from 'components/AdditionalInfo/AdditionalInfo';
+
+import { Section, WrapperDetails, LinkBack } from './MovieDetails.styled';
+// ======================MovieDetails===================
 
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState([]);
@@ -29,7 +21,6 @@ export const MovieDetails = () => {
     setIsLoading(true);
     getMovieDetailsById(movieId)
       .then(response => {
-        // console.log(response);
         setMovieDetails(response);
       })
       .catch(error => setError(error.message))
@@ -38,17 +29,15 @@ export const MovieDetails = () => {
       });
   }, [movieId]);
 
-  // const hendleLoaded = () => {
-  //   setIsLoading(true);
-  // };
-
   const { poster_path, title, overview, genres } = movieDetails;
+  const backLinkHref= location.state?.from ?? "/";
 
   return (
     <>
+      {/* ====================AboutFilm==================== */}
       <Section>
         {location.state ? (
-          <LinkBack to={location.state.from}>Go back</LinkBack>
+          <LinkBack to={backLinkHref}>Go back</LinkBack>
         ) : (
           <LinkBack to="/">Go back</LinkBack>
         )}
@@ -56,40 +45,22 @@ export const MovieDetails = () => {
         <WrapperDetails>
           {isLoading && <Loader />}
           {error && <p>Oops, some error:{error}</p>}
+
           {movieDetails && (
-            <img
-              src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
-              alt={title}
-              width="300"
-              // style={{ display: isLoading ? 'block' : 'none' }}
-              // onLoad={hendleLoaded}
+            <AboutFilm
+              poster_path={poster_path}
+              title={title}
+              overview={overview}
+              genres={genres}
             />
           )}
-          <AboutFilm>
-            <Title>{title}</Title>
-            <SecondaryTitle>Overview</SecondaryTitle>
-            <Paragraph>{overview}</Paragraph>
-            <SecondaryTitle>Genres</SecondaryTitle>
-            <Genres>
-              {genres?.map(({ id, name }) => (
-                <li key={id}>{name}</li>
-              ))}
-            </Genres>
-          </AboutFilm>
         </WrapperDetails>
       </Section>
       {/* ==============Additional information============= */}
       <Section>
-        <AdditionalTitle>Additional information</AdditionalTitle>
-        <AdditionalList>
-          <AdditionalItem>
-            <Link to="cast">Cast</Link>
-          </AdditionalItem>
-          <AdditionalItem>
-            <Link to="reviews">Reviews</Link>
-          </AdditionalItem>
-        </AdditionalList>
+        <AdditionalInfo />
       </Section>
+      {/* ======================Outlet====================== */}
       <Outlet />
     </>
   );

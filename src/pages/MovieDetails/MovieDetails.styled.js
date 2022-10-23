@@ -12,16 +12,12 @@ export const WrapperDetails = styled.div`
   gap: 30px;
 `;
 
-export const AboutFilm = styled.div`
-  padding: 20px 10px;
-`;
-
 export const LinkBack = styled(Link)`
-display: inline-block;
+  display: inline-block;
   padding: 4px 8px;
   margin-left: 10px;
 
-  border:2px solid;
+  border: 2px solid;
   border-radius: 6px;
 
   :hover,
@@ -30,44 +26,23 @@ display: inline-block;
   }
 `;
 
-export const Title = styled.h2`
-  text-align: center;
-  margin-bottom: 20px;
-`;
+// export const AdditionalTitle = styled.h3`
+//   margin-left: 20px;
+//   margin-bottom: 15px;
+// `;
 
-export const SecondaryTitle = styled.h2`
-  text-align: center;
-  margin-bottom: 15px;
-`;
+// export const AdditionalList = styled.ul`
+//   margin-left: 50px;
+//   margin-bottom: 15px;
+//   list-style-type: disc;
+// `;
 
-export const Paragraph = styled.p`
-  margin-bottom: 20px;
-`;
+// export const AdditionalItem = styled.li`
+//   margin-bottom: 5px;
+//   font-size: 18px;
 
-export const Genres = styled.ul`
-  display: flex;
-  gap: 20px;
-
-  justify-content: center;
-`;
-
-export const AdditionalTitle = styled.h3`
-  margin-left: 20px;
-  margin-bottom: 15px;
-`;
-
-export const AdditionalList = styled.ul`
-  margin-left: 50px;
-  margin-bottom: 15px;
-  list-style-type: disc;
-`;
-
-export const AdditionalItem = styled.li`
-  margin-bottom: 5px;
-  font-size: 18px;
-
-  :hover,
-  :focus {
-    color: #2196f3;
-  }
-`;
+//   :hover,
+//   :focus {
+//     color: #2196f3;
+//   }
+// `;
