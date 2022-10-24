@@ -29,7 +29,7 @@ const MovieDetails = () => {
       });
   }, [movieId]);
 
-  const { poster_path, title, overview, genres } = movieDetails;
+  const { poster_path, title, vote_average, overview, genres } = movieDetails;
   const backLinkHref = location.state?.from ?? '/';
 
   return (
@@ -50,6 +50,7 @@ const MovieDetails = () => {
             <AboutFilm
               poster_path={poster_path}
               title={title}
+              vote_average={vote_average}
               overview={overview}
               genres={genres}
             />

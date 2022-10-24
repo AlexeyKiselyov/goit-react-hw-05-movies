@@ -24,3 +24,10 @@ export const Genres = styled.ul`
 
   justify-content: center;
 `;
+
+export const UserScore = styled.p`
+margin-bottom: 10px;
+
+font-size: 18px;
+text-align:center;
+`;
