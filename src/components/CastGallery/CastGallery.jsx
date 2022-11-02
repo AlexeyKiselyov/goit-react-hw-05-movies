@@ -1,5 +1,6 @@
-import { notFoundImg } from 'links/imgNotFound';
+// import { notFoundImg } from 'links/imgNotFound';
 import { CastList, CastItem, Paragraph } from './CastGallery.styled';
+import imageNotFaund from '../../images/imgNotFound.jpg';
 
 export const CastGallery = ({ credits }) => {
   return (
@@ -12,7 +13,7 @@ export const CastGallery = ({ credits }) => {
                 <img
                   src={
                     profile_path === null
-                      ? notFoundImg
+                      ? imageNotFaund
                       : `https://image.tmdb.org/t/p/w500/${profile_path}`
                   }
                   alt={name}

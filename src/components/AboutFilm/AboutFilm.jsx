@@ -1,4 +1,4 @@
-import { notFoundImg } from 'links/imgNotFound';
+import imageNotFaund from '../../images/imgNotFound.jpg';
 import PropTypes from 'prop-types';
 import {
   About,
@@ -22,7 +22,7 @@ export const AboutFilm = ({
       <img
         src={
           poster_path === null
-            ? notFoundImg
+            ? imageNotFaund
             : `https://image.tmdb.org/t/p/w500/${poster_path}`
         }
         alt={title}

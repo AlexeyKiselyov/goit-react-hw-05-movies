@@ -13,16 +13,21 @@ const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [nothingFound, setNothingFound] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const params = searchParams.get('query') ?? '';
 
   useEffect(() => {
     if (!params) return;
+    setNothingFound(false);
     setError(null);
     setIsLoading(true);
     getMovieSearch(params)
-      .then(response => setMovies(response))
+      .then(response => {
+        setMovies(response);
+        if (response.length === 0) setNothingFound(true);
+      })
       .catch(error => setError(error.message))
       .finally(() => {
         setIsLoading(false);
@@ -35,12 +40,17 @@ const Movies = () => {
         <SearchForm setSearchParams={setSearchParams} />
       </Section>
 
-      {error && <p>Oops, some error:{error}</p>}
+      {error && <p style={{ marginLeft: '50px' }}>Oops, some error:{error}</p>}
 
       {movies.length > 0 && (
         <Section>
           <SearchResults movies={movies} />
         </Section>
+      )}
+      {nothingFound && (
+        <p style={{ marginLeft: '50px' }}>
+          Oops...Nothing was found.Try to enter something else.
+        </p>
       )}
 
       {isLoading && <Loader />}
